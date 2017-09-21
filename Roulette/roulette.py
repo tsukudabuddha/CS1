@@ -1,7 +1,7 @@
 """CS1- Roulette Python."""
 
 import random as r
-r.seed(1)
+
 
 bank_account = 1000
 bet_amount = 0
@@ -28,11 +28,8 @@ def roll_ball():
     return r.randint(0, 38)
 
 
-def check_results(bet_number, bet_color):
-    """Compare bet_color to color rolled.
-
-    Compares bet_number to number_rolled.
-    """
+def color_and_number():
+    """Return ball number and color."""
     rolled_ball = roll_ball()
     if rolled_ball in red:
         rolled_color = "Red"
@@ -40,9 +37,20 @@ def check_results(bet_number, bet_color):
         rolled_color = "Black"
     elif rolled_ball in green:
         rolled_color = "Green"
-    if rolled_color == bet_color and str(rolled_ball) == str(bet_number):
+    return [rolled_color, rolled_ball]
+
+
+def check_results(bet_number, bet_color):
+    """Compare bet_color to color rolled.
+
+    Compares bet_number to number_rolled.
+    """
+    result = color_and_number()
+    rolled_color = result[0]
+    rolled_number = result[1]
+    if rolled_color == bet_color and str(rolled_number) == str(bet_number):
         return "Both"
-    elif rolled_color == bet_color and str(rolled_ball) != str(bet_number):
+    elif rolled_color == bet_color and str(rolled_number) != str(bet_number):
         return "Color"
     else:
         return "Neither"
