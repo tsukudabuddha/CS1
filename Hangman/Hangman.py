@@ -1,6 +1,27 @@
 """CS1- Hangman."""
+import requests
+import web_scraper as Scrape
+import random as r
+from bs4 import BeautifulSoup
 
 # Scrape makeschool's website for words - Beautiful soup
+
+# specify the url
+quote_page = "https://www.makeschool.com"
+
+# query the website and return the html to the variable ‘page’
+page = requests.get(quote_page)
+
+# parse the html using beautiful soap and store in variable `soup`
+soup = BeautifulSoup(page.content, "html.parser")
+
+
+def choose_word(soup):
+    """Randomly find word from website and return."""
+    words = Scrape.word_list(soup)
+    random = r.randint(0, len(words))
+    print(len(words))
+    return words[random]
 
 
 def begin_game(word):
@@ -68,17 +89,16 @@ def play_game(word, guesses, completed_word):
     print(''.join(completed_word))
 
 
-def setup_game():
+def setup_game(soup):
     """Begin the game."""
-    word = list("hangman")  # Should call choose word function when done
+    word = list(choose_word(soup))  # Should call choose word function when don
     guesses = []
     completed_word = list(begin_game(word))
-    print(''.join(completed_word))
     while len(guesses) < 6 and check_completion(completed_word) is False:
         play_game(word, guesses, completed_word)
     if len(guesses) is 6:
         print("I'm sorry, you've used all your guesses and lost :(")
-        print("The correct word was: " + str(word))
+        print("The correct word was: " + (''.join(word)))
     else:
         if len(guesses) > 0:
             print("You only guessed " + str(len(guesses)) + " incorrect words")
@@ -86,4 +106,4 @@ def setup_game():
             print("You guessed the word perfectly!!!")
 
 
-setup_game()
+setup_game(soup)
