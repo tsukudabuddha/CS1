@@ -35,9 +35,13 @@ def words(soup):
     # Pull text from web pages
     word_text = soup.get_text()
     words = word_text.split(" ")
+
     # Filter out short words and non-words
     words = list(filter(lambda x: len(x) > 4, words))
     words = list(filter(lambda x: x.isalpha(), words))
+
+    # Convert words to lower case
+    words = list(filter(lambda x: x.lower(), words))
     return words
 
 
