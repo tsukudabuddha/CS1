@@ -12,7 +12,7 @@ quote_page = "https://www.makeschool.com"
 # query the website and return the html to the variable ‘page’
 page = requests.get(quote_page)
 
-# parse the html using beautiful soap and store in variable `soup`
+# parse the html using beautiful soup and store in variable `soup`
 soup = BeautifulSoup(page.content, "html.parser")
 
 
@@ -101,7 +101,8 @@ def setup_game(soup):
         print("The correct word was: " + (''.join(word)))
     else:
         if len(guesses) > 0:
-            print("You only guessed " + str(len(guesses)) + " incorrect words")
+            print("You only guessed " + str(len(guesses))
+                  + " incorrect letters")
         else:
             print("You guessed the word perfectly!!!")
 

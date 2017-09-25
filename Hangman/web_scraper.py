@@ -23,14 +23,21 @@ def all_pages(soup):
                 ms_link = "https://makeschool.com" + str(link.get('href'))
                 if ms_link not in links:
                     links.append(ms_link)
-                # Uncomment to see all links: print(ms_link)
+                    # Uncomment to see all links: print(ms_link)
     return links
 
 
 def words(soup):
-    """Randomly find word from website and return."""
+    """Return list of words pulled from soup text.
+
+    Filter out non-words and words under 4 characters
+    """
+    # Pull text from web pages
     word_text = soup.get_text()
     words = word_text.split(" ")
+    # Filter out short words and non-words
+    words = list(filter(lambda x: len(x) > 4, words))
+    words = list(filter(lambda x: x.isalpha(), words))
     return words
 
 
