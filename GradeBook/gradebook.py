@@ -26,6 +26,9 @@ class Classroom():
         """Add student to classroom."""
         self.students.append(student)
 
+    def to_string():
+        """Print out class gradebook."""
+
 
 def runMenu():
     """Print text menu and take in input."""
@@ -42,6 +45,10 @@ def main():
     """Run main function of game."""
     command = runMenu()
     if command == 1:
-        print("Which classroom would you like to add a student to?")
-        chosenClass = input("Your options are: ", Classroom.classes)
-        chose
+        student = input("What is the name of the student that you'd like to "
+                        + " add to the class?: ")
+        print("Which classroom would you like to add %s to?", student)
+        print("Your options are: ", Classroom.classes)
+        chosen_class = input("Enter the index of the class"
+                             + " that you'd like to edit: ")
+        Classroom.classes[chosen_class].add_student(student)
