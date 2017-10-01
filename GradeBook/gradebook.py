@@ -29,9 +29,8 @@ class Classroom():
     def to_string(self):
         """Print out class gradebook."""
         print("%s Class", self.name)
-        print("there are %i students in %s class",
+        print("there are %i students in %s class" %
               len(self.students), self.name)
-        pass
 
 
 def runMenu():
@@ -42,7 +41,8 @@ def runMenu():
     print("3. Remove student from class ")
     print("4. Add new assignment")
     print("5. Remove assignment")
-    return input("Enter your choice: ")
+    answer = int(input("Enter your choice: "))
+    return answer
 
 
 def main():
@@ -51,8 +51,11 @@ def main():
     if command == 1:
         student = input("What is the name of the student that you'd like to "
                         + " add to the class?: ")
-        print("Which classroom would you like to add %s to?", student)
+        print("Which classroom would you like to add %s to?" % student)
         print("Your options are: ", Classroom.classes)
-        chosen_class = input("Enter the index of the class"
-                             + " that you'd like to edit: ")
+        chosen_class = int(input("Enter the index of the class"
+                                 + " that you'd like to edit: "))
         Classroom.classes[chosen_class].add_student(student)
+
+
+main()
