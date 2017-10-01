@@ -27,6 +27,13 @@ class Classroom():
         """Add student to classroom."""
         self.students_dir[len(self.students_dir)] = student.name
 
+    def remove_student(self, name):  # Receive student name, not whole student
+        """Remove student from class."""
+        if name in self.students_dir.values():
+            for index in range(len(self.students_dir) - 2):
+                if self.students_dir[index] == name:
+                    del self.students_dir[index]
+
     def to_string(self):
         """Print out class gradebook."""
         print("%s Class", self.name)
@@ -38,6 +45,7 @@ class Student():
     """Store data for individual students."""
 
     def __init__(self, name):
+        """Initialize student object."""
         self.name = name
         self.first_name = name.split(" ")[0]
         self.last_name = name.split(" ")[1]
@@ -65,7 +73,13 @@ def main():
         print("Your options are: ", Classroom.classes)
         chosen_class = int(input("Enter the index of the class"
                                  + " that you'd like to edit: "))
-        Classroom.classes[chosen_class].add_student(student)
-
+    elif command == 2:
+        print("Which classroom would you like to add %s to?" % student)
+        print("Your options are: ", Classroom.classes)
+        chosen_class = int(input("Enter the index of the class"
+                                 + " that you'd like to edit: "))
+        student = input("What is the name of the student that you'd like to "
+                        + " remove from the class?: ")
+        Classroom.classes[chosen_class].remove_student(student)
 
 main()
