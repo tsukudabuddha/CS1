@@ -26,8 +26,12 @@ class Classroom():
         """Add student to classroom."""
         self.students.append(student)
 
-    def to_string():
+    def to_string(self):
         """Print out class gradebook."""
+        print("%s Class", self.name)
+        print("there are %i students in %s class",
+              len(self.students), self.name)
+        pass
 
 
 def runMenu():
