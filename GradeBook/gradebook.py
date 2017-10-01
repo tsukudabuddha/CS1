@@ -1,6 +1,7 @@
 """Gradebook OOP Assingment."""
 # Need to have at least two classes
 # Roster of students
+# Use lists in Dictionaries
 
 
 class Classroom():
@@ -15,8 +16,8 @@ class Classroom():
         """Initialize the classroom with a name."""
         self.name = name
         self.students = students
-        self.student_count = 0
         self.student_dir = {}
+        self.student_count = 0
         for student in self.students:
             self.student_dir[self.student_count] = student
             self.student_count += 1
@@ -24,13 +25,22 @@ class Classroom():
 
     def add_student(self, student):
         """Add student to classroom."""
-        self.students.append(student)
+        self.students_dir[len(self.students_dir)] = student.name
 
     def to_string(self):
         """Print out class gradebook."""
         print("%s Class", self.name)
         print("there are %i students in %s class" %
               len(self.students), self.name)
+
+
+class Student():
+    """Store data for individual students."""
+
+    def __init__(self, name):
+        self.name = name
+        self.first_name = name.split(" ")[0]
+        self.last_name = name.split(" ")[1]
 
 
 def runMenu():
