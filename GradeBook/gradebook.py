@@ -18,7 +18,7 @@ class Classroom():
         self.name = name
         self.student_dir = {}
         self.student_count = 0
-        for student in self.students:
+        for student in students:
             self.student_dir[self.student_count] = student
             self.student_count += 1
         super().classes.append(self)  # Add classroom object to class list
@@ -57,6 +57,10 @@ def main():
     """Run main function of game."""
     command = runMenu()
     if command == 1:
+        class_name = input("What is the name of the classroom " +
+                           " you want to create?")
+
+    elif command == 2:
         name = input("What is the name of the student that you'd like to "
                      + " add to the class?: ")
         print("Which classroom would you like to add %s to?" % name)
