@@ -1,4 +1,5 @@
 """Gradebook OOP Assingment."""
+from student import Student
 # Need to have at least two classes
 # Roster of students
 # Use lists in Dictionaries
@@ -15,7 +16,6 @@ class Classroom():
     def __init__(self, name, students):
         """Initialize the classroom with a name."""
         self.name = name
-        self.students = students
         self.student_dir = {}
         self.student_count = 0
         for student in self.students:
@@ -41,16 +41,6 @@ class Classroom():
               len(self.students), self.name)
 
 
-class Student():
-    """Store data for individual students."""
-
-    def __init__(self, name):
-        """Initialize student object."""
-        self.name = name
-        self.first_name = name.split(" ")[0]
-        self.last_name = name.split(" ")[1]
-
-
 def runMenu():
     """Print text menu and take in input."""
     print("Menu")
@@ -67,12 +57,13 @@ def main():
     """Run main function of game."""
     command = runMenu()
     if command == 1:
-        student = input("What is the name of the student that you'd like to "
-                        + " add to the class?: ")
-        print("Which classroom would you like to add %s to?" % student)
+        name = input("What is the name of the student that you'd like to "
+                     + " add to the class?: ")
+        print("Which classroom would you like to add %s to?" % name)
         print("Your options are: ", Classroom.classes)
         chosen_class = int(input("Enter the index of the class"
                                  + " that you'd like to edit: "))
+        chosen_class.add_student(Student(name, len(chosen_class.student_dir)))
     elif command == 2:
         print("Which classroom would you like to add %s to?" % student)
         print("Your options are: ", Classroom.classes)
