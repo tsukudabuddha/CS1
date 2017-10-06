@@ -11,34 +11,45 @@ class Classroom():
     Track all info required for class
     """
 
-    classes = []
+    all_classes = []
 
-    def __init__(self, name, students):
+    def __init__(self, name, students=[]):
         """Initialize the classroom with a name."""
         self.name = name
         self.student_dir = {}
-        self.student_count = 0
-        for student in students:
-            self.student_dir[self.student_count] = student
-            self.student_count += 1
-        super().classes.append(self)  # Add classroom object to class list
+        student_count = 0
+        if len(students) > 0:
+            for student in students:
+                self.student_dir[student_count] = student
+                student_count += 1
+        Classroom.all_classes.append(self)  # Add classroom object to classlist
 
     def add_student(self, student):
         """Add student to classroom."""
-        self.students_dir[len(self.students_dir)] = student.name
+        self.student_dir[len(self.student_dir)] = student
 
     def remove_student(self, name):  # Receive student name, not whole student
         """Remove student from class."""
-        if name in self.students_dir.values():
-            for index in range(len(self.students_dir) - 2):
-                if self.students_dir[index] == name:
-                    del self.students_dir[index]
+        if name in self.student_dir:
+            print("name in values")
+            for index in range(len(self.students_dir) - 1):
+                print("index range")
+                if self.student_dir[index].name == name:
+                    print("should delete person")
+                    del self.student_dir[index]
+                    pass
 
     def to_string(self):
         """Print out class gradebook."""
-        print("%s Class", self.name)
+        print("%s Class" % self.name)
         print("there are %i students in %s class" %
               len(self.students), self.name)
+
+    def find_id(self, classroom, name):
+        """Find id of student."""
+        for k, v in classroom.iteritems():
+            if v.name == name:
+                return k
 
 
 def runMenu():
@@ -77,4 +88,8 @@ def main():
                         + " remove from the class?: ")
         Classroom.classes[chosen_class].remove_student(student)
 
-main()
+
+classroom = Classroom("Math101")
+student = Student("Andrew Tsukuda", len(classroom.student_dir))
+classroom.add_student(student)
+classroom.remove_student("Andrew Tsukuda")

@@ -34,10 +34,3 @@ class Student():
             total_score += self.assignments[assignment]
         grade = total_score / assignment_number
         self.grade = grade
-
-
-# class Assignment():
-#     """Store data for Assignments."""
-#
-#     def __init__(self, name, student_name, grade):
-#
