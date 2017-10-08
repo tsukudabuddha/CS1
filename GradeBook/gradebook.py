@@ -30,9 +30,12 @@ class Classroom():
 
     def remove_student(self, name):  # Receive student name, not whole student
         """Remove student from class."""
+        print("Thingy")
+        print("name: %s" % name)
+        print("self.student_dir: " + str(self.student_dir))
         if name in self.student_dir:
             print("name in values")
-            for index in range(len(self.students_dir) - 1):
+            for index in range(len(self.student_dir) - 1):
                 print("index range")
                 if self.student_dir[index].name == name:
                     print("should delete person")
