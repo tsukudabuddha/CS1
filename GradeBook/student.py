@@ -4,12 +4,14 @@
 class Student():
     """Store data for individual students."""
 
-    def __init__(self, name, ID):
+    roster = []
+
+    def __init__(self, name):
         """Initialize student object."""
         self.name = name
         self.first_name = name.split(" ")[0]
         self.last_name = name.split(" ")[1]
-        self.ID = ID
+        self.ID = len(Student.roster) + 1
         self.assignments = {}
         self.grade = None
 
