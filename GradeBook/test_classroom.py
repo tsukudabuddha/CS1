@@ -34,10 +34,3 @@ def test_remove_students():
     assert classroom.student_dir[0].ID == 1
     classroom.remove_student("Andrew Tsukuda")
     assert len(classroom.student_dir) == 0
-
-
-# def test_to_string():
-#     """Test the to_string method."""
-#     classroom = setup_for_test()
-#     student = Student("Andrew Tsukuda")
-#     classroom.add_student(student)

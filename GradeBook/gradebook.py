@@ -51,6 +51,13 @@ class Classroom():
         if response[0].lower() == "y":
             self.add_schedule()
 
+    def get_gpa(self, student):
+        """Return gpa of student."""
+        if student.ID in self.student_dir:  # only runs if student in class
+            return self.student_dir[student.ID].grade
+        else:
+            return "This ID doesn't belong to any student enrolled in class"
+
 
 def find_id(classroom, name):
         """Find id of student."""
