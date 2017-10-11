@@ -17,6 +17,8 @@ class Classroom():
         """Initialize the classroom with a name."""
         self.name = name
         self.student_dir = {}
+        self.assignments = {}
+        self.schedule = {}
         student_count = 0
         if len(students) > 0:
             for student in students:
@@ -26,21 +28,28 @@ class Classroom():
 
     def add_student(self, student):
         """Add student to classroom."""
-        self.student_dir[len(self.student_dir)] = student
+        self.student_dir[student.ID] = student
 
-    def remove_student(self, name):  # Receive student name, not whole student
+    def remove_student(self, id_number):  # Receive student id, not name/obj
         """Remove student from class."""
-        for value in self.student_dir.values():
-            if name == value.name:
-                number = find_id(self, name)
-                pass
-        del self.student_dir[number]
+        if id_number in self.student_dir:
+            del self.student_dir[id_number]
+        print(self.student_dir.values())
 
     def to_string(self):
         """Print out class gradebook."""
         print("%s Class" % self.name)
         print("there are %i students in %s class" %
               len(self.students), self.name)
+
+    def add_schedule(self):
+        """Add days and times to class schedule."""
+        day = input("What days does this class meet?: ")
+        time = input("What time does the class meet on %s?" % day)
+        self.schedule[day] = time
+        response = input("Does the class meet on any other days?")
+        if response[0].lower() == "y":
+            self.add_schedule()
 
 
 def find_id(classroom, name):
@@ -81,8 +90,7 @@ def main():
             class_index = int(input("Enter the index of the class"
                                     + " that you'd like to edit: "))
             chosen_class = Classroom.all_classes[class_index]
-            chosen_class.add_student(Student(name,
-                                             len(chosen_class.student_dir)))
+            chosen_class.add_student(Student(name))
         elif command == 2:
             name = input("What is the name of the student that you'd like to "
                          + " add to the class?: ")
@@ -101,4 +109,4 @@ def main():
 classroom = Classroom("Math101")
 student = Student("Andrew Tsukuda")
 classroom.add_student(student)
-classroom.remove_student("Andrew Tsukuda")
+classroom.remove_student(1)

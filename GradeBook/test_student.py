@@ -5,7 +5,7 @@ from student import Student
 
 def setup_for_test():
     """Return Student instance."""
-    student = Student("Student Person", 0)
+    student = Student("Student Person")
     return student
 
 
@@ -13,7 +13,7 @@ def test_setup():
     """Setup test."""
     student = setup_for_test()
     assert student.name == "Student Person"
-    assert student.ID == 0
+    assert student.ID == 1
     assert student.grade is None
     assert len(student.assignments) == 0
 

@@ -19,19 +19,19 @@ def test_setup():
 def test_add_student():
     """Test the add student function."""
     classroom = setup_for_test()
-    student = Student("Andrew Tsukuda", len(classroom.student_dir))
+    student = Student("Andrew Tsukuda")
     classroom.add_student(student)
     assert len(classroom.student_dir) == 1
-    assert classroom.student_dir[0].ID == 0
+    assert classroom.student_dir[0].ID == 1
 
 
 def test_remove_students():
     """Test the remove student function."""
     classroom = setup_for_test()
-    student = Student("Andrew Tsukuda", len(classroom.student_dir))
+    student = Student("Andrew Tsukuda")
     classroom.add_student(student)
     assert len(classroom.student_dir) == 1
-    assert classroom.student_dir[0].ID == 0
+    assert classroom.student_dir[0].ID == 1
     classroom.remove_student("Andrew Tsukuda")
     assert len(classroom.student_dir) == 0
 
@@ -39,5 +39,5 @@ def test_remove_students():
 # def test_to_string():
 #     """Test the to_string method."""
 #     classroom = setup_for_test()
-#     student = Student("Andrew Tsukuda", len(classroom.student_dir))
+#     student = Student("Andrew Tsukuda")
 #     classroom.add_student(student)

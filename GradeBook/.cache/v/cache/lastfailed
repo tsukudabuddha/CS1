@@ -1,1 +1,4 @@
-{}
+{
+  "test_classroom.py::test_add_student": true,
+  "test_classroom.py::test_remove_students": true
+}
